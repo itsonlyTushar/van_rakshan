@@ -1,0 +1,52 @@
+import { useState } from "react";
+import Chart from "./Chart";
+import { FaChartBar } from "react-icons/fa";
+import { FaListUl } from "react-icons/fa";
+import WildLifePagination from "./WildLifePagination";
+
+function TabSwitch() {
+  const [activeStep, setActiveStep] = useState(1);
+
+  const tabsSwitch = () => {
+    switch (activeStep) {
+      case 1:
+        return <WildLifePagination />;
+      case 2:
+        return <Chart />;
+      default:
+        <WildLifePagination />;
+    }
+  };
+
+  const changeStep = (step) => {
+    setActiveStep(step);
+  };
+
+  return (
+    <>
+      <div className="flex justify-between items-center py-2 px-2">
+        <div className="text-xl p-4 flex gap-6 text-green-500">
+          <button
+            className={`px-6 py-2  rounded-xl ${
+              activeStep === 1 && "bg-green-500 text-white"
+            }`}
+            onClick={() => changeStep(1)}
+          >
+            <FaListUl />
+          </button>
+          <button
+            className={`px-6 py-2  rounded-xl ${
+              activeStep === 2 && "bg-green-500 text-white"
+            }`}
+            onClick={() => changeStep(2)}
+          >
+            <FaChartBar />
+          </button>
+        </div>
+      </div>
+      {tabsSwitch()}
+    </>
+  );
+}
+
+export default TabSwitch;

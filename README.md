@@ -7,7 +7,7 @@ The project showcases a representation of a government or NGO website that works
 
 ## Demo
 
-https://i.postimg.cc/GpxBZgr5/Screenshot-2025-06-15-223021.png
+![DEMO](https://i.postimg.cc/GpxBZgr5/Screenshot-2025-06-15-223021.png)
 
 
 

@@ -23,7 +23,7 @@ function Chart() {
     const getData = async () => {
       setLoading(true);
       try {
-        const result = await apiCall("https://sheetdb.io/api/v1/4m9ooz1a1a4lx");
+        const result = await apiCall("https://sheet2api.com/v1/bnwbW8PxQlSW/animal");
         if (result === true) {
           setError(true);
           setLoading(false);

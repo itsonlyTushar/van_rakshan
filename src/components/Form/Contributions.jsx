@@ -17,7 +17,7 @@ function Contributions() {
   return (
     <div data-aos="zoom-in-up" className="bg-[#9DC08B]">
       <div className="bg-[#FFF7DA] text-green-700 rounded-t-[4rem] p-5">
-        <h1 className="text-6xl text-center">Glimpse of our efforts</h1>
+        <h1 className="text-3xl sm:text-2xl md:text-4xl lg:text-4xl xl:text-5xl text-center py-4">Glimpse of our efforts</h1>
         <div className="sm:grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4 p-5 flex flex-col justify-center">
           <div className="row-span-2">
             <img

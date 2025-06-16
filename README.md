@@ -17,11 +17,7 @@ The project showcases a representation of a government or NGO website that works
 #### **Frontend:** : Javascript, React and Redux
 #### **Styling:** : Tailwind CSS
 #### **Home Page Animations:** : AOS library
-
-
-
-
-
+### **Storage** : Local Storage
 
 
 ## Core Specifications

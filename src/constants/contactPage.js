@@ -3,8 +3,39 @@ import { IoMdContact } from "react-icons/io";
 import { IoMdMail } from "react-icons/io";
 
 
-// contact us page contact details
 
+// contact input field details 
+
+ export const contactInputs = [
+    {
+      name: "fullName",
+      label: "Enter Your Name",
+      placeholder: "Enter Here",
+
+    },
+    {
+      name: "phNumber",
+      label: "Enter Contact Number",
+      placeholder: "Enter Here",
+  
+    },
+    {
+      name: "email",
+      label: "Enter Email",
+      placeholder: "Enter Here",
+
+    },
+    {
+      name: "description",
+      label: "Description",
+      placeholder: "Enter Here",
+
+    },
+  ];
+
+
+
+// contact us page contact details
 export const contactOptions = [
     {
       id: 1,

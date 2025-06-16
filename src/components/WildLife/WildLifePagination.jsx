@@ -18,7 +18,7 @@ function WildLifePagination() {
       try {
         setIsLoading(true);
         const callData = await apiCall(
-          "https://sheetdb.io/api/v1/4m9ooz1a1a4lx"
+          "https://sheet2api.com/v1/bnwbW8PxQlSW/animal"
         );
         if (callData === true) {
           setError(true);

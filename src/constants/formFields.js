@@ -84,7 +84,7 @@ export const fields = [
   {
     name: "remoteOrOffice",
     placeholder: "Enter here...",
-    label: "Are you available to work in office?",
+    label: "Are you available to work in a office?",
 
   },
   {

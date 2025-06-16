@@ -54,7 +54,7 @@ function Navbar() {
 
         {/* NAV FOR MOBILE SCREENS  */}
         {isOpen && (
-          <ul className="md:hidden gap-6 text-white text-xl font-thin px-2 text-[0.9rem] py-2">
+          <ul className="md:hidden gap-6 text-white text-xl font-thin px-3 text-[0.9rem]">
             {navigation.map((nav) => (
               <Link
                 onClick={() => setIsOpen(!isOpen)}

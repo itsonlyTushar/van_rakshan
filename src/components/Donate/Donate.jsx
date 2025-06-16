@@ -1,57 +1,48 @@
-import { useState } from "react";
 import Input from "../UI/Input";
 import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateDonateForm, validations } from "../../features/teamSlice";
+import { donateInputs } from "./donateConfig";
 
 function Donate() {
-  const [transaction, setTransaction] = useState("");
-  const [amount, setAmount] = useState("");
-  const [name, setName] = useState("");
-  const [phNumber, setPhoneNumber] = useState("");
+  const dispatch = useDispatch();
+  const formData = useSelector((state) => state.teamSlice.donateForm);
+  const errorData = useSelector((state) => state.teamSlice.errors.donateForm);
+
+  const kys = Array.from(Object.keys(errorData));
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const emailBody = `
+
+    kys.forEach((fld) =>
+      dispatch(validations({ stateUpdate: "donateForm", field: fld }))
+    );
+
+    if (
+      formData.fullName &&
+      formData.phNumber &&
+      formData.amount &&
+      formData.transactionId
+    ) {
+      const emailBody = `
       New Donation
-     Name: ${name}
-     Contact No: ${phNumber}
-     Donated Amount: ${amount}
-
-     Transaction Id : ${transaction}
+     Name: ${formData.fullName}
+     Contact No: ${formData.phNumber}
+     Donated Amount: ${formData.amount}
+     Transaction Id : ${formData.transactionId}
     `;
-
-    const mail = `mailto:tushargsoni17@gmail.com?subject=${encodeURIComponent(
-      "Donation Details"
-    )}
+      const mail = `mailto:tushargsoni17@gmail.com?subject=${encodeURIComponent(
+        "Donation Details"
+      )}
     &body=${encodeURIComponent(emailBody)}`;
-    window.location.href = mail;
+      window.location.href = mail;
+    }
   };
 
-  const donateInputs = [
-    {
-      label: "Enter Your Name",
-      placeholder: "Enter Here",
-      function: (e) => setName(e.target.value),
-      type: "text",
-    },
-    {
-      label: "Enter Contact Number",
-      placeholder: "Enter Here",
-      function: (e) => setPhoneNumber(e.target.value),
-      type: "number",
-    },
-    {
-      label: "Enter Transaction Id",
-      placeholder: "Enter Here",
-      function: (e) => setTransaction(e.target.value),
-      type: "text",
-    },
-    {
-      label: "Enter Amount",
-      placeholder: "Enter Here",
-      function: (e) => setAmount(e.target.value),
-      type: "number",
-    },
-  ];
+  const handleChange = (e) => {
+    dispatch(updateDonateForm({ field: e.target.name, value: e.target.value }));
+    dispatch(validations({ stateUpdate: "donateForm", field: e.target.name }));
+  };
 
   return (
     <div className="bg-green-700 pt-28">
@@ -80,9 +71,9 @@ function Donate() {
               <Input
                 labelText={fld.label}
                 placeholder={fld.placeholder}
-                onChange={fld.function}
-                type={fld.type}
-                required
+                onChange={handleChange}
+                name={fld.name}
+                error={errorData[fld.name]}
               />
             </div>
           ))}

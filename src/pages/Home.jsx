@@ -22,21 +22,26 @@ function Home() {
   return (
     <>
       <main
-        className={` ${
+        className={`${
           location.pathname === "/" ? "bg-[#9DC08B]" : "bg-green-700"
-        } sm:py-0 py-20  border-none `}
+        }  border-none`}
       >
+        <div className="relative h-screen">
+
+        <div className="absolute inset-0 overflow-hidden h-full w-full">
         {/* random video will be display after every render  */}
-        <div className="border-none relative">
-          <video className="w-full object-cover" loop muted autoPlay>
+   
+          <video className="w-full h-full object-cover" loop muted autoPlay>
             <source src={randomVideo()} type="video/mp4" />
           </video>
+    
+        </div>
 
           {/* overlay text above to video  */}
           <div className="absolute top-1/2 left-1/2 text-center py-16 transform -translate-x-1/2 -translate-y-1/2">
             <h1
               data-aos="fade-up"
-              className="sm:text-4xl md:text-5xl lg:text-8xl text-white font-semibold"
+              className="text-xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-semibold"
             >
               Every Species Matters. Every Action Counts.
             </h1>
@@ -50,9 +55,9 @@ function Home() {
       </main>
 
       {/* Mission section */}
-      <section className="bg-[#9DC08B] border-none">
-        <div className="text-center p-5 py-16">
-          <h1 className="sm:text-6xl text-4xl text-wrap font-medium mt-4 text-green-700">
+      <section className="bg-[#9DC08B] border-none z-index">
+        <div className="text-center p-5 py-20">
+          <h1 className="text-5xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl text-wrap mt-4 text-green-700 font-thin">
             Our Mission
           </h1>
         </div>
@@ -62,7 +67,7 @@ function Home() {
       {/* Carousel section  */}
       <section className="bg-[#9DC08B]">
         <div className="bg-green-700 rounded-t-[4rem] py-28">
-          <h1 className="text-center sm:text-6xl text-4xl text-white p-14">
+          <h1 className="text-center text-5xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl text-white p-14">
             What Our Leaders Says
           </h1>
           <Carousel />

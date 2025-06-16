@@ -15,7 +15,7 @@ function Faq() {
       id="faq"
       className=" p-4  bg-[#FFF7DA] text-green-700 py-36  rounded-t-[4rem] "
     >
-      <h1 className="text-4xl sm:text-6xl text-center font-thin py-6">FAQs</h1>
+      <h1 className="text-5xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl text-center font-thin py-6">FAQs</h1>
       <div className="grid sm:grid-cols-2 grid-cols-1 place-items-center content-center  gap-2 mt-6 px-2">
         {questions.map((data) => {
           const open = isOpen === data.id;

@@ -18,7 +18,7 @@ function NewsLetter() {
 
   return (
     <div id="about" className="bg-green-700 text-white py-10 rounded-t-[4rem]">
-      <h1 className="text-4xl sm:text-6xl text-center">About Us</h1>
+      <h1 className="text-5xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl text-center">About Us</h1>
       <div className="flex flex-col sm:flex-row justify-center items-center max-w-screen-lg mx-auto px-6 gap-20 mt-10">
         <div className="p-2 max-w-xl text-center text-xl">
           Van Rakshan is a non-profit organization committed to the protection
@@ -40,7 +40,7 @@ function NewsLetter() {
           <Modal
             setShow={setShow}
             show={show}
-            message={"You have successfully subsribed to out weekly newsletter"}
+            message={"You have successfully subsribed to our weekly newsletter"}
           />
           <form onSubmit={clickNewsLetter} action="POST">
             <input

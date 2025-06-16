@@ -6,7 +6,6 @@ function Mission() {
   return (
     <div className="py-6 md:py-16 px-4 md:px-6">
       <div className="grid sm:grid-cols-3 grid-cols-1 place-items-center content-center gap-4 items-center">
-        {/* Cards  */}
         {missionContent.map((card) => (
           <div
             key={card.id}

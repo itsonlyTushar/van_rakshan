@@ -41,7 +41,7 @@ function Home() {
           <div className="absolute top-1/2 left-1/2 text-center py-16 transform -translate-x-1/2 -translate-y-1/2">
             <h1
               data-aos="fade-up"
-              className="text-2xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-semibold"
+              className="text-4xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-semibold"
             >
               Every Species Matters. Every Action Counts.
             </h1>

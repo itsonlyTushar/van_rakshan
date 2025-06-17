@@ -2,39 +2,33 @@ import { useEffect, useState } from "react";
 import { GrProjects } from "react-icons/gr";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
-import { apiCall } from "../../constants/apiCalls";
 import { GoDotFill } from "react-icons/go";
 import Spinner from "../Loaders/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchApi } from "../../features/apiSlice";
 
 function ProgramDetails() {
-  const [program, setProgram] = useState([]);
+
+  const [program, setProgram] = useState({});
   const { programId } = useParams();
-  const [loading, setLoading] = useState(false);
 
-  // re-using fetch data function from api file
+  const dispatch = useDispatch();
+  const fetchData = useSelector((state) => state.apiReducer.data);
+  const loadingState = useSelector((state) => state.apiReducer.loading);
+
   useEffect(() => {
-    const programData = async () => {
-      setLoading(true);
-      try {
-        const data = await apiCall(
-          "https://sheet2api.com/v1/NrYPyVwcTIaZ/program"
-        );
+    dispatch(fetchApi("https://sheet2api.com/v1/NrYPyVwcTIaZ/program"));
+  }, [dispatch, programId]);
 
-        const setType = Number(programId);
+  useEffect(() => {
+    if (Array.isArray(fetchData) && fetchData.length > 0) {
+      const setType = Number(programId);
+      const prgmId = fetchData.find((n) => n["ID"] === setType);
+      setProgram(prgmId);
+    }
+  }, [fetchData, programId]);
 
-        const prgmId = data.find((n) => n["ID"] === setType);
-
-        setProgram(prgmId);
-      } catch (error) {
-        console.log("error fetching", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    programData();
-  }, [programId]);
-
-  if (loading) {
+  if (loadingState) {
     return (
       <div className="bg-green-700 py-48 flex justify-center item-center mx-auto h-screen">
         <Spinner textSize={"20px"} textColor={"text-green-700"} />

@@ -47,7 +47,7 @@ function Pagination({
                     {content.map((item, index) => (
                       <div key={index}>
                         {item.heading ? (
-                          <h1 className="sm:text-xl md:text-2xl lg:text-4xl py-2">
+                          <h1 className="text-2xl sm:text-xl md:text-2xl lg:text-4xl py-2">
                             {elem[item.headValue]}
                           </h1>
                         ) : (

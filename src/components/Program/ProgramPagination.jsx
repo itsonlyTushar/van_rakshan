@@ -1,53 +1,41 @@
 import { useEffect, useState } from "react";
-import { apiCall } from "../../constants/apiCalls";
 import TechnicalError from "../Error/TechnicalError";
 import Skeleton from "../Loaders/Skeleton";
 import { programsConfig } from "./paginationConfig";
 import Pagination from "../UI/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchApi } from "../../features/apiSlice";
 
 function ProgramPagination() {
-  const [programData, setProgramData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+
+  const dispatch = useDispatch();
+  const fetchData = useSelector((state) => state.apiReducer.data);
+
+  const loadingState = useSelector((state) => state.apiReducer.loading);
+  const errorState = useSelector((state) => state.apiReducer.error.error);
+
+  const handleFetchApi = () => {
+    dispatch(fetchApi("https://sheet2api.com/v1/NrYPyVwcTIaZ/program"));
+  };
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        setIsLoading(true);
-        const callData = await apiCall(
-          "https://sheet2api.com/v1/NrYPyVwcTIaZ/program"
-        );
-        if (callData === true) {
-          setError(true);
-          setIsLoading(false);
-        } else {
-          setProgramData(callData);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        setError(true);
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getData();
+    handleFetchApi();
   }, []);
 
-  if (error) {
+  if (errorState) {
     return <TechnicalError />;
   }
 
   return (
     <>
-      {isLoading ? (
+      {loadingState ? (
         <Skeleton />
       ) : (
         <Pagination
           content={programsConfig}
           dataPerPage={6}
-          apiData={programData}
+          apiData={fetchData}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
           link={true}

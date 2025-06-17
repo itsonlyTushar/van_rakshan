@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { apiCall } from "../../constants/apiCalls";
 import {
   Bar,
   BarChart,
@@ -7,57 +5,30 @@ import {
   XAxis,
   Tooltip,
   Legend,
-  PieChart,
-  Pie,
-  Cell,
 } from "recharts";
 import TechnicalError from "../Error/TechnicalError";
 import Spinner from "../Loaders/Spinner";
 
-function Chart() {
-  const [chartData, setChartData] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      try {
-        const result = await apiCall("https://sheet2api.com/v1/bnwbW8PxQlSW/animal");
-        if (result === true) {
-          setError(true);
-          setLoading(false);
-        } else {
-          setChartData(result);
-          setLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, []);
-
+function Chart({ fetchedApiData, fetchedLoading, fetchedError }) {
   // filtering only unique API data using Set
   const uniqueStatuses = [
-    ...new Set(chartData.map((item) => item["Conservation Status"])),
+    ...new Set(fetchedApiData.map((item) => item["Conservation Status"])),
   ];
 
   // separating and storing data as an object using map
   const speciesStatus = uniqueStatuses.map((status) => ({
     name: status,
-    count: chartData.filter((item) => item["Conservation Status"] === status)
-      .length,
+    count: fetchedApiData.filter(
+      (item) => item["Conservation Status"] === status
+    ).length,
   }));
 
   // filtereing unique diet
-  const uniqueDiet = [...new Set(chartData.map((item) => item["Diet"]))];
+  const uniqueDiet = [...new Set(fetchedApiData.map((item) => item["Diet"]))];
 
   const dietData = uniqueDiet.map((diet) => ({
     name: diet,
-    count: chartData.filter((item) => item["Diet"] === diet).length,
+    count: fetchedApiData.filter((item) => item["Diet"] === diet).length,
   }));
 
   // to resue the charts
@@ -74,13 +45,13 @@ function Chart() {
     },
   ];
 
-  if (error) {
+  if (fetchedError) {
     return <TechnicalError />;
   }
 
   return (
     <>
-      {loading ? (
+      {fetchedLoading ? (
         <div className="flex justify-center items-center">
           <Spinner />
         </div>
@@ -94,7 +65,6 @@ function Chart() {
               key={chartsData.id}
               className="p-5 my-4 flex justify-center items-center mx-auto bg-[#FFF7DA] rounded-2xl max-w-4xl"
             >
-              
               <ResponsiveContainer
                 width="75%"
                 height={400}

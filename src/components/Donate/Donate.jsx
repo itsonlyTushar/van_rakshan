@@ -8,7 +8,7 @@ function Donate() {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.teamSlice.donateForm);
   const errorData = useSelector((state) => state.teamSlice.errors.donateForm);
-
+  
   const kys = Array.from(Object.keys(errorData));
 
   const handleSubmit = (e) => {

@@ -1,49 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Skeleton from "../Loaders/Skeleton";
-import { apiCall } from "../../constants/apiCalls";
 import TechnicalError from "../Error/TechnicalError";
 import Spinner from "../Loaders/Spinner";
 import Pagination from "../UI/Pagination";
 import { wildlifeConfig } from "./wildlifeConfig";
 
-function WildLifePagination() {
-  const [wildlifeData, setWildLifeData] = useState([]);
+function WildLifePagination({ fetchedApiData, fetchedLoading, fetchedError }) {
   const [currentPage, setCurrentPage] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
   const [selectConcern, setSelectConcern] = useState("Vulnerable");
-  const [error, setError] = useState(false);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        setIsLoading(true);
-        const callData = await apiCall(
-          "https://sheet2api.com/v1/bnwbW8PxQlSW/animal"
-        );
-        if (callData === true) {
-          setError(true);
-          setIsLoading(false);
-        } else {
-          setWildLifeData(callData);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        setError(true);
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getData();
-  }, []);
-
-  const filterConern = wildlifeData.filter(
+  const filterConern = fetchedApiData.filter(
     (animal) => animal["Conservation Status"] === selectConcern
   );
 
   // filteres status to map over options
   const uniqueStatuses = [
-    ...new Set(wildlifeData.map((item) => item["Conservation Status"])),
+    ...new Set(fetchedApiData.map((item) => item["Conservation Status"])),
   ];
 
   const changeConcern = (e) => {
@@ -51,7 +23,7 @@ function WildLifePagination() {
     setSelectConcern(e.target.value);
   };
 
-  if (error) {
+  if (fetchedError) {
     return <TechnicalError />;
   }
 
@@ -60,7 +32,7 @@ function WildLifePagination() {
       <div className="flex justify-center items-center">
         {/* dropdown to filter the status  */}
 
-        {isLoading ? (
+        {fetchedLoading ? (
           <Spinner />
         ) : (
           <select
@@ -76,7 +48,7 @@ function WildLifePagination() {
         )}
       </div>
 
-      {isLoading ? (
+      {fetchedLoading ? (
         <Skeleton />
       ) : (
         <Pagination

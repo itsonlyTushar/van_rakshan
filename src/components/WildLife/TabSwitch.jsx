@@ -1,20 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "./Chart";
 import { FaChartBar } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa";
 import WildLifePagination from "./WildLifePagination";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchApi } from "../../features/apiSlice";
 
 function TabSwitch() {
   const [activeStep, setActiveStep] = useState(1);
 
+  const dispatch = useDispatch();
+  const fetchData = useSelector((state) => state.apiReducer.data);
+
+  const loadingState = useSelector((state) => state.apiReducer.loading);
+  const errorState = useSelector((state) => state.apiReducer.error.error);
+
+  const handleFetchApi = () => {
+    dispatch(fetchApi("https://sheet2api.com/v1/bnwbW8PxQlSW/animal"));
+  };
+
+  useEffect(() => {
+    handleFetchApi();
+  }, []);
+
   const tabsSwitch = () => {
     switch (activeStep) {
       case 1:
-        return <WildLifePagination />;
+        return (
+          <WildLifePagination
+            fetchedApiData={fetchData}
+            fetchedLoading={loadingState}
+            fetchedError={errorState}
+          />
+        );
       case 2:
-        return <Chart />;
+        return (
+          <Chart
+            fetchedApiData={fetchData}
+            fetchedError={loadingState}
+            fetchedLoading={errorState}
+          />
+        );
       default:
-        <WildLifePagination />;
+        <WildLifePagination
+          fetchedApiData={fetchData}
+          fetchedLoading={loadingState}
+          fetchedError={errorState}
+        />;
     }
   };
 

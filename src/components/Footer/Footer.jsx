@@ -1,6 +1,7 @@
 import logo from "../../assets/img/logo.png";
 import { Link } from "react-router";
 
+
 function Footer() {
   return (
     <div className="bg-[#9DC08B] text-white py-10 px-6">
@@ -59,9 +60,12 @@ function Footer() {
                   </Link>
                 </li>
               </ul>
+
             </div>
           </div>
         </div>
+
+
       </div>
     </div>
   );

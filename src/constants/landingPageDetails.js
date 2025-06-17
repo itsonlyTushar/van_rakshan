@@ -14,13 +14,13 @@ export const missionContent = [
      id: 2,
      icon: FaHandsHolding,
      heading: "Our History",
-     para: `Van Rakshan was established in 2023 by a small group of students led by Tushar Soni, and we have been working towards saving nearly extinct species ever since.`,
+     para: `Van Rakshan was established in by 2023 Ministry Of Environment, Forest and Climate Change, and we have been working towards saving nearly extinct species ever since.`,
    },
   {
      id: 3,
      icon: FaUserGroup,
      heading: "Our Team",
-     para: `With a growing team of 20 passionate individuals, we always welcome new helping hands to join our mission.`,
+     para: `With a growing team of 150 passionate individuals, we always welcome new helping hands to join our mission.`,
    },
  ];
 

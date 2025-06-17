@@ -17,18 +17,18 @@ function NewsLetter() {
   };
 
   return (
-    <div id="about" className="bg-green-700 text-white py-10 rounded-t-[4rem]">
+    <div id="about" className="bg-green-700 text-white py-14 rounded-t-[4rem]">
       <h1 className="text-5xl sm:text-xl md:text-5xl lg:text-6xl xl:text-7xl text-center">About Us</h1>
       <div className="flex flex-col sm:flex-row justify-center items-center max-w-screen-lg mx-auto px-6 gap-20 mt-10">
-        <div className="p-2 max-w-xl text-center text-xl">
+        <div className="p-2 max-w-xl text-center text-xl text-justify">
           Van Rakshan is a non-profit organization committed to the protection
-          and conservation of endangered species across India and beyond. Our
+          and conservation of endangered species across India established by Ministry Of Environment, Forest and Climate Change. Our
           mission is to raise awareness, educate communities nationwide, and
           take impactful action to safeguard the natural world for future
           generations. Through national events, webinars, and conservation
           initiatives, we strive to inspire individuals across the country to
           become stewards of nature and actively contribute to the preservation
-          of biodiversity. Join us in our mission to protect wildlife—because
+          of biodiversity. Join us in our mission to protect wildlife because
           every species deserves a future.
         </div>
 

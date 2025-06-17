@@ -8,6 +8,7 @@ import Mission from "../components/Home/Mission.jsx";
 import { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import ScrollTop from "../components/ScrollTop/ScrollTop.jsx";
 
 function Home() {
   const location = useLocation();
@@ -15,7 +16,7 @@ function Home() {
   useEffect(() => {
     Aos.init({
       duration: 800,
-      once: true,
+      once: false,
     });
   }, []);
 
@@ -27,15 +28,13 @@ function Home() {
         }  border-none`}
       >
         <div className="relative h-screen">
+          <div className="absolute inset-0 overflow-hidden h-full w-full">
+            {/* random video will be display after every render  */}
 
-        <div className="absolute inset-0 overflow-hidden h-full w-full">
-        {/* random video will be display after every render  */}
-   
-          <video className="w-full h-full object-cover" loop muted autoPlay>
-            <source src={randomVideo()} type="video/mp4" />
-          </video>
-    
-        </div>
+            <video className="w-full h-full object-cover" loop muted autoPlay>
+              <source src={randomVideo()} type="video/mp4" />
+            </video>
+          </div>
 
           {/* overlay text above to video  */}
           <div className="absolute top-1/2 left-1/2 text-center py-16 transform -translate-x-1/2 -translate-y-1/2">
@@ -88,6 +87,11 @@ function Home() {
       <section className="bg-green-700">
         <Faq />
       </section>
+      <div data-aos="fade-up" className="relative h-full flex justify-end">
+        <div className="absolute py-4">
+          <ScrollTop />
+        </div>
+      </div>
     </>
   );
 }

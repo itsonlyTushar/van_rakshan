@@ -1,8 +1,8 @@
-import Input from "../UI/Input";
+import Input from "../components/UI/Input";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { updateDonateForm, validations } from "../../features/teamSlice";
-import { donateInputs } from "./donateConfig";
+import { updateDonateForm, validations } from "../features/teamSlice";
+import { donateInputs } from "../constants/donateConfig";
 
 function Donate() {
   const dispatch = useDispatch();

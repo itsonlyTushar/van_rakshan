@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiArrowUpCircle } from "react-icons/fi";
 
+// this functionality scroll to top of the page when navigation between pages 
 function ScrollTop() {
   const [show, setShow] = useState(false);
 

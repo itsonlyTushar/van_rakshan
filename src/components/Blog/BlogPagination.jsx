@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchApi } from "../../features/apiSlice";
 
 function BlogPagination() {
+  
   const [currentPage, setCurrentPage] = useState(0);
   const dispatch = useDispatch();
   const fetchData = useSelector((state) => state.apiReducer.data);
